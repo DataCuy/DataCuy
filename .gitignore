@@ -1,0 +1,15 @@
+# Secretos y variables de entorno
+.env
+
+# Dependencias de Node
+node_modules/
+
+# Archivos temporales de sistema
+.DS_Store
+Thumbs.db
+deno.lock
+
+# Logs de errores
+npm-debug.log*
+# Local Netlify folder
+.netlify

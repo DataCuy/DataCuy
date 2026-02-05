@@ -1,0 +1,14 @@
+{
+    "name": "datacuy",
+    "version": "1.0.0",
+    "description": "Comunidad colaborativa para el cuidado de cobayas",
+    "main": "public/index.html",
+    "scripts": {
+        "start": "npx netlify-cli dev"
+    },
+    "author": "Francisco Xavier Nieto Orozco",
+    "license": "MIT",
+    "dependencies": {
+        "node-fetch": "^2.6.7"
+    }
+}

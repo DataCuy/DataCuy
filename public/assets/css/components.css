@@ -1,0 +1,251 @@
+.section-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: var(--secondary-color);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    font-weight: bold;
+    transition: transform 0.2s, background 0.3s;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-secondary {
+    background-color: #2E8B57 !important;
+}
+
+.btn-accent {
+    background-color: #F4A460 !important;
+}
+
+.baby-note {
+    background-color: #fffde7;
+    border-left: 5px solid #F4A460;
+}
+
+/* Tarjeta de Raza Individual */
+.breed-card {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.breed-card:hover {
+    transform: translateY(-5px);
+}
+
+.breed-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.breed-info {
+    padding: 15px;
+}
+
+/* Filtros del Directorio */
+.vet-filters {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    background: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    align-items: flex-end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+    min-width: 150px;
+}
+
+.filter-group input, 
+.filter-group select {
+    width: 100%;
+    padding: 8px;
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.btn-clear {
+    height: 40px;
+    padding: 0 20px;
+    background-color: #666;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+/* Modales de aviso */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0; top: 0;
+    width: 100%; height: 100%; 
+    background-color: rgba(0,0,0,0.5); 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Limpieza y Grid */
+.team-grid-modern {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2.5rem;
+    margin-top: 2rem;
+}
+
+/* Tarjeta Base Minimalista */
+.member-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    position: relative;
+    border: 1px solid #eee;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+    transition: all 0.3s ease;
+}
+
+.member-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+}
+
+.avatar-frame {
+    width: 130px;
+    height: 130px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #f0f0f0;
+}
+
+.profile-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Detalles de los textos */
+.member-role {
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    margin: 0.5rem 0 1.5rem;
+}
+
+.small-bio {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* Botón GitHub */
+.github-btn {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background: #24292e;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+}
+
+.github-btn:hover { background: #000; }
+.lead-member { border-top: 4px solid #2d5a27; }
+.medical-member { border-top: 4px solid #1a73e8; }
+
+.static-team-header {
+    width: 100%;
+    padding: 20px 20px 30px; 
+    background: #ffffff;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.page-title {
+    color: #2d5a27;
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+
+.intro-subtitle {
+    color: #888;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.team-grid-modern {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 4rem;
+    max-width: 1100px;
+    margin: 20px auto 80px;
+    padding: 0 20px;
+}
+
+/* Aseguramos que nada se sobreponga */
+.member-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 2.5rem 1.5rem;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.member-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Ajustes para los formularios en móviles */
+@media (max-width: 768px) {
+    #form-container {
+        padding: 15px;
+    }
+    
+    #vetForm label {
+        font-size: 0.9rem;
+    }
+}

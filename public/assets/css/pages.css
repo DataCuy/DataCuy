@@ -1,0 +1,129 @@
+/* --- SECCIÓN HOME --- */
+.hero-welcome {
+    text-align: center;
+    background: linear-gradient(to bottom, #ffffff, #f0fdf4);
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.action-buttons {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.didactic-note {
+    background-color: #fffde7;
+    border-left: 5px solid var(--secondary-color);
+}
+
+.support-list {
+    list-style: none;
+    margin-top: 15px;
+    padding-left: 20px;
+}
+
+/* --- ALIMENTACIÓN --- */
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.food-category {
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    background: var(--white);
+    box-shadow: var(--shadow);
+}
+
+.food-category.green { border-top: 5px solid #2E8B57; }
+.food-category.yellow { border-top: 5px solid #FFD700; }
+.food-category.red { border-top: 5px solid #FF4500; }
+
+.food-list {
+    margin-top: 10px;
+    list-style-position: inside;
+}
+
+/* --- ENCICLOPEDIA --- */
+.breeds-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.behavior-list dt {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
+
+.behavior-list dd {
+    margin-left: 0;
+    margin-bottom: 15px;
+    padding-left: 10px;
+    border-left: 3px solid var(--secondary-color);
+}
+
+/* --- VETERINARIOS --- */
+.vet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.vet-card {
+    background: white;
+    border-left: 5px solid var(--primary-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.vet-card.urgencia {
+    border-left-color: var(--accent-color);
+}
+
+#vetForm label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+#vetForm input, 
+#vetForm select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    border: 1.5px solid #ddd;
+    border-radius: 6px;
+    transition: border-color 0.3s;
+}
+
+#vetForm input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* Responsivo Home */
+@media (max-width: 768px) {
+    .hero-welcome {
+        padding: 3rem 1rem;
+    }
+
+    .hero-title {
+        font-size: 1.8rem;
+    }
+}
