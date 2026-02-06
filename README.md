@@ -1,4 +1,4 @@
-# 🐹 DataCuy-Project
+# 🐹 DataCuy
 > **"Por una vida digna y saludable para cada cobaya en el mundo."**
 
 ## 🌟 La Visión
