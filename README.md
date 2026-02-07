@@ -11,9 +11,9 @@ Este proyecto está dedicado a **Némesis** y **Génesis**, las cobayas que insp
 ## 👥 El Equipo
 Este es un esfuerzo interdisciplinario que une la ingeniería de software con la medicina veterinaria de exóticos:
 
-* **Francisco Xavier Nieto Orozco (@DevXavierNieto)** - *Lead Architect & Founder*.
-* **Lol Angelica Estrada Puch (@Angi12344)** - *Back-end Developer*.
-* 
+* **Francisco Xavier Nieto Orozco (@DevXavierNieto)** - *Lead Architect & Founder / Full-Stack Developer*.
+* **Lol Angelica Estrada Puch (@Angi12344)** - *Back-End Developer*.
+* **Aranza Rodríguez Muñiz (@Austenita)** - *Front-End Developer*.
 ---
 
 ## 🛠️ Estructura del Proyecto
