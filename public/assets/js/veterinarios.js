@@ -2,33 +2,7 @@ const READ_URL = '/.netlify/functions/leer-datos';
 const SEND_URL = '/.netlify/functions/enviar-datos';
 let veterinariosData = [];
 
-async function cargarVeterinarios() {
-    try {
-        const response = await fetch(READ_URL);
-        const data = await response.text();
-        const rows = data.split('\n').slice(1); 
-        
-        veterinariosData = rows.map(row => {
-            const cols = row.split(','); 
-            if(cols.length < 6) return null; 
-            const costoNumerico = parseFloat(cols[3].replace(/[^0-9.]/g, '')) || 0;
-            return {
-                pais: cols[0].trim(),
-                nombre: cols[1].trim(),
-                municipio: cols[2].trim(),
-                costoTexto: cols[3].trim(),
-                costoValor: costoNumerico,
-                horario: cols[4].trim(),
-                urgencias: cols[5].trim(),
-                mapa: cols[6] ? cols[6].trim() : ""
-            };
-        }).filter(item => item !== null);
 
-        llenarFiltroPaises();
-    } catch (error) {
-        document.getElementById('lista-veterinarios').innerHTML = '<p>Error al cargar la base de datos.</p>';
-    }
-}
 
 function llenarFiltroPaises() {
     const select = document.getElementById('paisFilter');
@@ -79,6 +53,37 @@ function filtrarVeterinarios() {
     mostrarVeterinarios(filtrados);
 }
 
+
+async function cargarVeterinarios() {
+    try {
+        const response = await fetch(READ_URL);
+        const data = await response.text();
+        const rows = data.split('\n').slice(1); 
+        
+        veterinariosData = rows.map(row => {
+            const cols = row.split(','); 
+            if(cols.length < 6) return null; 
+            const costoNumerico = parseFloat(cols[3].replace(/[^0-9.]/g, '')) || 0;
+            
+            return {
+                pais: cols[0].trim(),
+                nombre: cols[1].trim(),
+                municipio: cols[2].trim(),
+                costoTexto: cols[3].trim(),
+                costoValor: costoNumerico,
+                horario: cols[4].trim(),
+                urgencias: cols[5].trim(),
+                mapa: cols[6] ? cols[6].trim() : "",
+                telefono: cols[7] ? cols[7].trim() : "" 
+            };
+        }).filter(item => item !== null);
+
+        llenarFiltroPaises();
+    } catch (error) {
+        document.getElementById('lista-veterinarios').innerHTML = '<p>Error al cargar la base de datos.</p>';
+    }
+}
+
 function mostrarVeterinarios(lista) {
     const contenedor = document.getElementById('lista-veterinarios');
     contenedor.innerHTML = '';
@@ -92,14 +97,21 @@ function mostrarVeterinarios(lista) {
         const esUrgencia = vet.urgencias.toLowerCase() === 'si';
         const claseBorde = esUrgencia ? 'urgencia' : '';
         const textoUrgencia = esUrgencia ? '✨ Acepta urgencias' : 'Horario Normal';
+        
         const botonMapa = vet.mapa && vet.mapa.trim() !== "" 
             ? `<a href="${vet.mapa}" target="_blank" class="btn" style="font-size:0.8rem">Ver Mapa</a>`
             : `<button onclick="mostrarAvisoSinMapa()" class="btn" style="font-size:0.8rem; background-color: #bbb;">Ver Mapa</button>`;
+
+        let htmlTelefono = '';
+        if (vet.telefono && vet.telefono.length > 5) {
+            htmlTelefono = `<p>📞 <a href="tel:${vet.telefono.replace(/\s/g, '')}" style="text-decoration:none; color:inherit;"><strong>${vet.telefono}</strong></a></p>`;
+        }
 
         contenedor.innerHTML += `
             <div class="vet-card ${claseBorde}">
                 <h3>${vet.nombre}</h3>
                 <p><strong>🌍 ${vet.pais} | 📍 ${vet.municipio}</strong></p>
+                ${htmlTelefono}
                 <p>💰 Costo: ${vet.costoTexto}</p>
                 <p>🕒 ${vet.horario}</p>
                 <p><small>${textoUrgencia}</small></p>
