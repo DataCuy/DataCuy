@@ -1,13 +1,8 @@
 const FOOD_DATA = [
-    { id: "lechuga_romana", nombre: "Lechuga romana", ca100: 33, gramosPorPorcion: 15, unidad: "1 hoja" },
-    { id: "pimiento_rojo", nombre: "Pimiento rojo", ca100: 7, gramosPorPorcion: 20, unidad: "1 rodaja" },
-    { id: "pepino", nombre: "Pepino", ca100: 16, gramosPorPorcion: 30, unidad: "2 rodajas" },
-    { id: "calabacita", nombre: "Calabacita", ca100: 16, gramosPorPorcion: 25, unidad: "1 rodaja" },
-    { id: "zanahoria", nombre: "Zanahoria", ca100: 33, gramosPorPorcion: 10, unidad: "1 bastón" },
-    { id: "cilantro", nombre: "Cilantro", ca100: 67, gramosPorPorcion: 5,  unidad: "3 ramitas" },
-    { id: "espinaca", nombre: "Espinaca", ca100: 99, gramosPorPorcion: 10, unidad: "1 hoja" },
-    { id: "acelga", nombre: "Acelga", ca100: 51, gramosPorPorcion: 15, unidad: "1 hoja" },
-    { id: "apio", nombre: "Apio", ca100: 40, gramosPorPorcion: 15, unidad: "1 trozo" }
+    { id: "lechuga_romana", nombre: "Lechuga romana", ca100: 33, gramosPorPorcion: 20, unidad: "1 hoja grande" },
+    { id: "lechuga_orejona", nombre: "Lechuga orejona", ca100: 33, gramosPorPorcion: 20, unidad: "1 hoja grande" },
+    { id: "pimiento_rojo", nombre: "Pimiento rojo", ca100: 7, gramosPorPorcion: 15, unidad: "1 tira gruesa" },
+    { id: "pimiento_verde", nombre: "Pimiento verde", ca100: 10, gramosPorPorcion: 15, unidad: "1 tira gruesa" }
 ];
 
 let calcState = {};
@@ -26,15 +21,20 @@ function renderFoodList(filter = "") {
     const filtered = FOOD_DATA.filter(f => f.nombre.toLowerCase().includes(filter));
 
     filtered.forEach(food => {
+        // Cálculo exacto de miligramos por porción
+        const mgPorPorcion = (food.ca100 * food.gramosPorPorcion) / 100;
+        
         const div = document.createElement('div');
         div.className = "member-card calc-item"; 
         
         div.innerHTML = `
-            <div class="food-info">
+            <div class="food-info" style="text-align: left;">
                 <strong style="color: var(--primary-color); display: block;">${food.nombre}</strong>
-                <small style="color: #666;">${food.unidad} (~${food.gramosPorPorcion}g)</small>
+                <small style="color: #666; display: block;">${food.unidad} (~${food.gramosPorPorcion}g)</small>
+                <span style="font-size: 0.75rem; color: #F4A460; font-weight: bold;">Aporta: ${mgPorPorcion.toFixed(1)} mg de calcio</span>
             </div>
             <input type="number" placeholder="0" value="${calcState[food.id] || ''}" min="0" 
+                style="width: 60px; height: 40px;"
                 oninput="updateValue('${food.id}', this.value)">
         `;
         container.appendChild(div);
@@ -50,7 +50,8 @@ function calculateTotals() {
     let totalMg = 0;
     FOOD_DATA.forEach(f => {
         if (calcState[f.id] > 0) {
-            totalMg += (f.ca100 * (calcState[f.id] * f.gramosPorPorcion)) / 100;
+            const mgPorPorcion = (f.ca100 * f.gramosPorPorcion) / 100;
+            totalMg += mgPorPorcion * calcState[f.id];
         }
     });
 
@@ -66,17 +67,17 @@ function calculateTotals() {
         dot.style.background = "#ccc";
         headline.innerText = "Agrega vegetales para evaluar.";
         display.classList.add('default');
-    } else if (totalMg < 50) {
+    } else if (totalMg <= 28) { 
         dot.style.background = "#4CAF50";
-        headline.innerText = "Nivel Ideal: Seguro para consumo diario.";
+        headline.innerText = "🟢 Nivel Ideal: Seguro para consumo diario.";
         display.classList.add('safe');
-    } else if (totalMg <= 80) {
+    } else if (totalMg <= 31) { 
         dot.style.background = "#FFC107";
-        headline.innerText = "Precaución: Límite diario alcanzado.";
+        headline.innerText = "🟡 Precaución: Límite diario alcanzado.";
         display.classList.add('warning');
-    } else {
+    } else { 
         dot.style.background = "#F44336";
-        headline.innerText = "Exceso: Riesgo de lodo o cálculos renales.";
+        headline.innerText = "🔴 Exceso: Riesgo de lodo o cálculos renales.";
         display.classList.add('danger');
     }
 }
