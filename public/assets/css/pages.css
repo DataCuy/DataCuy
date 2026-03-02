@@ -127,3 +127,59 @@
         font-size: 1.8rem;
     }
 }
+
+/* --- CALCULADORA DE CALCIO --- */
+.calculator-layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 30px;
+}
+
+.food-list-scroll {
+    max-height: 450px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.calc-item.member-card {
+    padding: 15px 20px !important;
+    text-align: left !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    border-top: none !important; 
+}
+
+.calc-item input {
+    width: 80px;
+    padding: 8px;
+    border: 1.5px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.result-display {
+    color: var(--white);
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    transition: background 0.5s ease;
+    box-shadow: var(--shadow);
+}
+
+.result-display.default { background-color: var(--primary-color); }
+.result-display.safe { background-color: #2E8B57; }
+.result-display.warning { background-color: #F4A460; }
+.result-display.danger { background-color: #FF6347; }
+
+.food-list-scroll::-webkit-scrollbar { width: 6px; }
+.food-list-scroll::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+
+@media (max-width: 900px) {
+    .calculator-layout { grid-template-columns: 1fr; }
+    .calc-results { order: -1; margin-bottom: 20px; }
+    #status-card { position: relative !important; top: 0 !important; }
+}

@@ -77,6 +77,44 @@
         </section>
     </main>
 
+<section class="section-card mt-32">
+    <h2>Calculadora de calcio</h2>
+    <p class="mb-20">Selecciona las porciones para asegurar una dieta equilibrada para tu cobaya.</p>
+
+    <div class="calculator-layout">
+        <div class="calc-selection">
+            <div class="filter-group mb-20">
+                <input type="text" id="searchFood" placeholder="Buscar vegetal...">
+            </div>
+
+            <div id="food-list-container" class="food-list-scroll">
+                </div>
+        </div>
+
+        <aside class="calc-results">
+            <div id="status-card" class="section-card" style="position: sticky; top: 100px;">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                    <span id="status-dot" style="height: 12px; width: 12px; border-radius: 50%; background: #ccc;"></span>
+                    <strong style="font-size: 0.8rem;">SEMÁFORO NUTRICIONAL</strong>
+                </div>
+                
+                <p id="status-headline" style="font-size: 0.9rem; font-weight: 600; min-height: 40px; color: #444;">
+                    Selecciona porciones para evaluar.
+                </p>
+
+                <div id="result-display" class="result-display default">
+                    <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">Calcio Total</span>
+                    <div id="total-mg" style="font-size: 2.8rem; font-weight: 800; margin: 5px 0;">0.0 mg</div>
+                </div>
+                
+                <button onclick="resetCalc()" class="btn btn-accent" style="width: 100%; margin-top: 20px;">
+                    Limpiar dieta
+                </button>
+            </div>
+        </aside>
+    </div>
+</section>
+
     <footer class="main-footer">
         <p>© 2026 DataCuy. Desarrollado con ❤️ para la comunidad.</p>
         <div class="footer-contact">
@@ -85,5 +123,6 @@
     </footer>
 
     <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/calculadora.js"></script>
 </body>
 </html>
