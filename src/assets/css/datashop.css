@@ -1,0 +1,232 @@
+/* Heredamos las variables de styles.css indirectamente */
+
+.search-section {
+    display: flex;
+    justify-content: center;
+}
+
+.search-box {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 20px 12px 45px;
+    border: 2px solid #e0e0e0;
+    border-radius: 30px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: #2E8B57; /* Color primario de tu grid verde */
+    box-shadow: 0 0 8px rgba(46, 139, 87, 0.15);
+}
+
+.search-box i {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+/* Grid de Productos similar a food-grid */
+.products-grid {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.product-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+    border-bottom: 4px solid #2E8B57; /* Siguiendo el estilo de los bordes de color */
+}
+
+.product-image-container {
+    width: 100%;
+    height: 220px;
+    background-color: #f4f4f4;
+    overflow: hidden;
+}
+
+.product-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-image-container img {
+    transform: scale(1.1);
+}
+
+.product-body {
+    padding: 20px;
+    text-align: center;
+}
+
+.product-body h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.25rem;
+    color: #333;
+}
+
+.product-body p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.product-socials {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 15px;
+    background: #fafafa;
+    border-top: 1px solid #eee;
+}
+
+.product-socials a {
+    font-size: 1.4rem;
+    transition: transform 0.2s;
+}
+
+.product-socials a:hover {
+    transform: scale(1.2);
+}
+
+.fa-facebook { color: #1877F2; }
+.fa-instagram { color: #E4405F; }
+.fa-whatsapp { color: #25D366; }
+.fa-telegram { color: #0088cc; }
+.fa-envelope { color: #DB4437; }
+.fa-phone { color: #34A853; }
+
+.join-community-card {
+    position: relative;
+    background: linear-gradient(145deg, #246b43, #1a5032); /* Verdes más profundos y modernos */
+    color: #ffffff;
+    padding: 50px 30px;
+    border-radius: 24px; /* Bordes más orgánicos */
+    text-align: center;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    margin-bottom: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Decoración de fondo */
+.join-community-card::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -20%;
+    width: 140%;
+    height: 140%;
+    background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* Badge "Novedad" */
+.badge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.join-community-card h3 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.join-community-card p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 650px;
+    margin: 0 auto 30px auto;
+    color: #e0f2f1;
+}
+
+/* Botón de WhatsApp Premium */
+.btn-whatsapp-join {
+    display: inline-flex;
+    align-items: center;
+    background-color: #ffeb3b; /* Amarillo más vibrante */
+    color: #1a5032 !important;
+    padding: 16px 35px;
+    border-radius: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.05rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 20px rgba(255, 235, 59, 0.2);
+}
+
+.btn-whatsapp-join i {
+    font-size: 1.4rem;
+    margin-right: 12px;
+}
+
+.btn-whatsapp-join:hover {
+    transform: scale(1.05) translateY(-5px);
+    background-color: #ffffff;
+    box-shadow: 0 15px 30px rgba(255, 255, 255, 0.3);
+}
+
+/* Texto de apoyo debajo del botón */
+.support-text {
+    display: block;
+    margin-top: 15px;
+    font-size: 0.85rem;
+    opacity: 0.7;
+    font-style: italic;
+}
+
+/* Etiqueta de precio flotante */
+.product-image-container {
+    width: 100%;
+    height: 250px; /* Ajustamos a una altura fija estándar */
+    background-color: #ffffff; /* Fondo blanco puro para que funda con fotos de producto */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.product-price-tag {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--primary-color, #2E8B57);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+/* Ajuste opcional por si quieres que el título resalte más ahora con el precio */
+.product-body h3 {
+    color: #1a5032;
+    margin-bottom: 8px;
+}
