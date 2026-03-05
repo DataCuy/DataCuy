@@ -259,3 +259,23 @@
         font-size: 0.9rem;
     }
 }
+
+.menu-toggle {
+    display: none; /* Se oculta en desktop */
+    background: none;
+    border: none;
+    color: white; 
+    font-size: 2rem; /* Tamaño del icono */
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1100;
+    transition: all 0.3s ease;
+}
+
+/* Solo aparece en pantallas móviles */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+        position: relative;
+    }
+}

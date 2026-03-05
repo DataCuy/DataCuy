@@ -6,7 +6,7 @@ import '../assets/css/datashop.css';
 
 // Constantes de configuración para R2
 const R2_BASE_URL = "https://pub-1ac97a13718a45a985e6637a5dff3f5d.r2.dev";
-const PLACEHOLDER_IMAGE = `${R2_BASE_URL}/logo-placeholder.webp`; // Ajusta el nombre al que subiste
+const PLACEHOLDER_IMAGE = `${R2_BASE_URL}/logo-placeholder.webp`;
 
 const DataShop = () => {
     const [productos, setProductos] = useState([]);
@@ -78,7 +78,6 @@ const DataShop = () => {
                     <article key={item.id} className="product-card">
                         <div className="product-image-container">
                             <img
-                                /* Concatenamos la URL base con el nombre guardado en Firestore */
                                 src={`${R2_BASE_URL}/${item.imagen}`}
                                 alt={item.nombre}
                                 onError={(e) => { 

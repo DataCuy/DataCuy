@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { collection, onSnapshot, addDoc } from 'firebase/firestore';
 import { db } from '../services/firebase';
-import Gracias from './Gracias'; // Importamos tu nuevo componente
+import Gracias from './Gracias';
 import '../assets/css/pages.css';
 import '../assets/css/veterinarios.css';
 
