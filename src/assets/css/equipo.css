@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;1,500&family=DM+Sans:wght@400;500;600&display=swap');
+
+.team-wrapper {
+    font-family: 'DM Sans', sans-serif;
+    color: #1a2e1a;
+    background: #fafaf7;
+    min-height: 100vh;
+}
+
+/* ── Hero ── */
+.team-hero {
+    position: relative;
+    text-align: center;
+    padding: 5rem 5vw 4rem;
+    background: #f0f7ec;
+    overflow: hidden;
+}
+
+.team-hero__blobs {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.3;
+}
+
+.blob--a {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, #a8d5a2, transparent);
+    top: -100px;
+    left: -80px;
+}
+
+.blob--b {
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, #f4c47a, transparent);
+    bottom: -80px;
+    right: -60px;
+}
+
+.team-eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #3a7d44;
+    background: #d4edda;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.team-heading {
+    font-family: 'Lora', serif;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    font-weight: 600;
+    color: #1a2e1a;
+    margin: 0 0 0.8rem;
+    position: relative;
+}
+
+.team-subheading {
+    color: #4a5e4a;
+    font-size: 1.05rem;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.7;
+    position: relative;
+}
+
+/* ── Grid ── */
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 4rem 5vw 6rem;
+}
+
+/* ── Card ── */
+.member-card {
+    background: #fff;
+    border-radius: 24px;
+    padding: 2.2rem 1.8rem;
+    border: 1px solid #e8ede8;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.member-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--accent);
+}
+
+.member-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+}
+
+.member-card__top {
+    position: relative;
+    margin-bottom: 1.4rem;
+}
+
+.avatar-ring {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--accent);
+    box-shadow: 0 0 0 6px rgba(0, 0, 0, 0.04);
+}
+
+.avatar-ring img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.member-tag {
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.member-card__body {
+    flex: 1;
+    margin-bottom: 1.4rem;
+}
+
+.member-card__body h3 {
+    font-family: 'Lora', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #1a2e1a;
+    margin: 0 0 0.35rem;
+    line-height: 1.35;
+}
+
+.member-role {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin: 0 0 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.member-sub {
+    font-size: 0.8rem;
+    color: #8a9e8a;
+    margin: 0;
+}
+
+.github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 20px;
+    background: #1a2e1a;
+    color: #fff;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.github-link:hover {
+    background: #000;
+    transform: scale(1.04);
+}
+
+@media (max-width: 768px) {
+    .members-grid {
+        grid-template-columns: 1fr;
+        max-width: 360px;
+    }
+}

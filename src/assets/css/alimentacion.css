@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,600;1,500&family=DM+Sans:wght@400;500;600&display=swap');
+
+.page-wrapper {
+    font-family: 'DM Sans', sans-serif;
+    color: #1a2e1a;
+    background: #fafaf7;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 5vw 5rem;
+}
+
+/* ── Header ── */
+.page-header {
+    margin-bottom: 3rem;
+}
+
+.page-eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #3a7d44;
+    background: #d4edda;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 0.8rem;
+}
+
+.page-heading {
+    font-family: 'Lora', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    color: #1a2e1a;
+    margin: 0 0 0.6rem;
+}
+
+.page-subheading {
+    color: #4a5e4a;
+    font-size: 1rem;
+    line-height: 1.75;
+    max-width: 600px;
+    margin: 0;
+}
+
+/* ── Grid de Comida ── */
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.food-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 1.8rem;
+    border: 1px solid #e8ede8;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
+    transition: transform 0.25s;
+}
+
+.food-card:hover {
+    transform: translateY(-4px);
+}
+
+.food-card--green {
+    border-top: 4px solid #3a7d44;
+}
+
+.food-card--yellow {
+    border-top: 4px solid #e6a817;
+}
+
+.food-card--red {
+    border-top: 4px solid #c0392b;
+}
+
+.food-card__header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.food-card__header h3 {
+    font-family: 'Lora', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1a2e1a;
+    margin: 0;
+    flex: 1;
+}
+
+.food-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.food-dot--green {
+    background: #3a7d44;
+}
+
+.food-dot--yellow {
+    background: #e6a817;
+}
+
+.food-dot--red {
+    background: #c0392b;
+}
+
+.food-badge {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+.food-badge--green {
+    background: #d4edda;
+    color: #2d6a35;
+}
+
+.food-badge--yellow {
+    background: #fff3cd;
+    color: #9a6b00;
+}
+
+.food-badge--red {
+    background: #fde8e8;
+    color: #922b21;
+}
+
+.food-card__desc {
+    font-size: 0.88rem;
+    color: #6a7e6a;
+    margin: 0 0 1.1rem;
+    line-height: 1.6;
+}
+
+.food-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.food-list li {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 14px;
+    background: #f8fbf8;
+    border-radius: 10px;
+    border-left: 3px solid #d4edda;
+}
+
+.food-card--yellow .food-list li {
+    background: #fffdf5;
+    border-left-color: #fff3cd;
+}
+
+.food-card--red .food-list li {
+    background: #fff8f8;
+    border-left-color: #fde8e8;
+}
+
+.food-list li strong {
+    font-size: 0.9rem;
+    color: #1a2e1a;
+}
+
+.food-list li span {
+    font-size: 0.8rem;
+    color: #7a8e7a;
+}
+
+.food-list--danger li {
+    position: relative;
+    padding-left: 32px;
+}
+
+.food-list--danger li::before {
+    content: '☠️';
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    font-size: 0.85rem;
+}
+
+/* ── Baby Banner ── */
+.baby-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    background: linear-gradient(135deg, #fffbf0, #fff8e1);
+    border: 1px solid #f4d98a;
+    border-left: 5px solid #e6a817;
+    border-radius: 16px;
+    padding: 1.6rem 2rem;
+}
+
+.baby-banner__icon {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.baby-banner h3 {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    color: #1a2e1a;
+    margin: 0 0 0.4rem;
+}
+
+.baby-banner h3 em {
+    font-style: italic;
+    color: #9a6b00;
+}
+
+.baby-banner p {
+    font-size: 0.92rem;
+    color: #5a5030;
+    line-height: 1.7;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .food-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .baby-banner {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+}
