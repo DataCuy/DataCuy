@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-import { collection, onSnapshot, addDoc } from 'firebase/firestore';
-import { db } from '../services/firebase';
 import { jsPDF } from 'jspdf';
 import Gracias from './Gracias';
 
@@ -19,11 +17,53 @@ const Veterinarios = () => {
     const [solo24h, setSolo24h] = useState('todos');
 
     useEffect(() => {
-        const unsubscribe = onSnapshot(collection(db, "veterinarios"), (snapshot) => {
-            const vetsArray = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-            setVeterinarios(vetsArray);
-        });
-        return () => unsubscribe();
+        const CSV_URL =
+            'https://docs.google.com/spreadsheets/d/e/2PACX-1vS9tAXdfBtiB1llKnsGZRh8EAHRKVZPVSIQ8TS96h6Lt-5lJzr_pSc4vdI4Ll42DB6fN8TdXiE2rVYd/pub?output=csv';
+
+        fetch(CSV_URL)
+            .then(res => res.text())
+            .then(text => {
+                const [headerLine, ...rows] = text.trim().split('\n');
+                const headers = headerLine.split(',').map(h => h.trim().toLowerCase());
+
+                const vetsArray = rows.map((row, i) => {
+                    // Maneja comas dentro de comillas
+                    const cols = [];
+                    let current = '';
+                    let inQuotes = false;
+                    for (const ch of row) {
+                        if (ch === '"') { inQuotes = !inQuotes; }
+                        else if (ch === ',' && !inQuotes) { cols.push(current.trim()); current = ''; }
+                        else { current += ch; }
+                    }
+                    cols.push(current.trim());
+
+                    const get = (key) => {
+                        const idx = headers.indexOf(key);
+                        const val = idx !== -1 ? cols[idx]?.replace(/^"|"$/g, '').trim() : '';
+                        return val || 'Desconocido';
+                    };
+
+                    const costo = get('costo');
+                    const costoNum = parseFloat(costo);
+
+                    return {
+                        id: i,
+                        pais:       get('pais'),
+                        nombre:     get('nombre'),
+                        municipio:  get('municipio'),
+                        costo:      isNaN(costoNum) ? 0 : costoNum,
+                        costoTexto: isNaN(costoNum) ? 'Precio no disponible' : `$${costo}`,
+                        horario:    get('horario'),
+                        urgencia:   get('urgencia'),
+                        telefono:   get('telefono') !== 'Desconocido' ? get('telefono') : null,
+                        mapa:       get('mapa')     !== 'Desconocido' ? get('mapa')     : null,
+                    };
+                });
+
+                setVeterinarios(vetsArray);
+            })
+            .catch(err => console.error('Error al cargar el CSV:', err));
     }, []);
 
     const handleImagenChange = (e) => {
@@ -393,6 +433,43 @@ const generarFichaPDF = (e) => {
                 )}
             </section>
 
+            {/* ── AGREGAR VETERINARIO ── */}
+            <section className="add-vet-section">
+                <div className="add-vet-section__text">
+                    <h3>¿Conoces un buen veterinario?</h3>
+                    <p>Ayuda a la comunidad agregándolo al directorio.</p>
+                </div>
+                <button className="btn-primary" onClick={() => setMostrarFormulario(!mostrarFormulario)}>
+                    {mostrarFormulario ? "Cerrar formulario" : "Agregar veterinario"}
+                </button>
+
+                {mostrarFormulario && (
+                    <form onSubmit={handleSubmit} className="ficha-form" style={{ borderTop: '1px solid #e8ede8', paddingTop: '1.5rem', marginTop: '1.5rem' }}>
+                        <div className="form-row">
+                            <div className="field-group"><label>País *</label><input type="text" name="pais" required placeholder="México" /></div>
+                            <div className="field-group"><label>Nombre Clínica *</label><input type="text" name="nombre" required placeholder="Clínica Veterinaria..." /></div>
+                            <div className="field-group"><label>Municipio *</label><input type="text" name="municipio" required placeholder="Celaya" /></div>
+                            <div className="field-group"><label>Costo Consulta</label><input type="number" name="costo" placeholder="350" /></div>
+                            <div className="field-group"><label>Horario</label><input type="text" name="horario" placeholder="Lun-Vie 9-18h" /></div>
+                            <div className="field-group">
+                                <label>¿Urgencias 24h?</label>
+                                <select name="urgencias">
+                                    <option value="No">No</option>
+                                    <option value="Si">Sí, 24 horas</option>
+                                </select>
+                            </div>
+                            <div className="field-group"><label>Teléfono</label><input type="tel" name="telefono" placeholder="+52 461..." /></div>
+                            <div className="field-group"><label>Link Google Maps</label><input type="url" name="mapa" placeholder="https://maps.google.com/..." /></div>
+                        </div>
+                        <button type="submit" className="btn-primary" disabled={enviando}>
+                            {enviando ? "Enviando..." : "Enviar para revisión"}
+                        </button>
+                    </form>
+                )}
+            </section>
+
+            <Gracias isOpen={mostrarModalGracias} onClose={() => setMostrarModalGracias(false)} />
+
             {/* ── FILTROS ── */}
             <section className="filters-bar">
                 <div className="field-group">
@@ -456,42 +533,7 @@ const generarFichaPDF = (e) => {
                 ))}
             </div>
 
-            {/* ── AGREGAR VETERINARIO ── */}
-            <section className="add-vet-section">
-                <div className="add-vet-section__text">
-                    <h3>¿Conoces un buen veterinario?</h3>
-                    <p>Ayuda a la comunidad agregándolo al directorio.</p>
-                </div>
-                <button className="btn-primary" onClick={() => setMostrarFormulario(!mostrarFormulario)}>
-                    {mostrarFormulario ? "Cerrar formulario" : "Agregar veterinario"}
-                </button>
-
-                {mostrarFormulario && (
-                    <form onSubmit={handleSubmit} className="ficha-form" style={{ borderTop: '1px solid #e8ede8', paddingTop: '1.5rem', marginTop: '1.5rem' }}>
-                        <div className="form-row">
-                            <div className="field-group"><label>País *</label><input type="text" name="pais" required placeholder="México" /></div>
-                            <div className="field-group"><label>Nombre Clínica *</label><input type="text" name="nombre" required placeholder="Clínica Veterinaria..." /></div>
-                            <div className="field-group"><label>Municipio *</label><input type="text" name="municipio" required placeholder="Celaya" /></div>
-                            <div className="field-group"><label>Costo Consulta</label><input type="number" name="costo" placeholder="350" /></div>
-                            <div className="field-group"><label>Horario</label><input type="text" name="horario" placeholder="Lun-Vie 9-18h" /></div>
-                            <div className="field-group">
-                                <label>¿Urgencias 24h?</label>
-                                <select name="urgencias">
-                                    <option value="No">No</option>
-                                    <option value="Si">Sí, 24 horas</option>
-                                </select>
-                            </div>
-                            <div className="field-group"><label>Teléfono</label><input type="tel" name="telefono" placeholder="+52 461..." /></div>
-                            <div className="field-group"><label>Link Google Maps</label><input type="url" name="mapa" placeholder="https://maps.google.com/..." /></div>
-                        </div>
-                        <button type="submit" className="btn-primary" disabled={enviando}>
-                            {enviando ? "Enviando..." : "Enviar para revisión"}
-                        </button>
-                    </form>
-                )}
-            </section>
-
-            <Gracias isOpen={mostrarModalGracias} onClose={() => setMostrarModalGracias(false)} />
+            
 
             {mostrarModalMap && (
                 <div className="modal-overlay" onClick={() => setMostrarModalMap(false)}>
