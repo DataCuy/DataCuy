@@ -60,9 +60,7 @@ const DataShop = () => {
                     <span className="join-eyebrow">✦ Novedad</span>
                     <h2>¡Únete a DataShop!</h2>
                     <p>
-                        Publica tus productos y servicios ante toda la comunidad. La aportación es de{' '}
-                        <strong>$50 MXN mensuales</strong>, destinados íntegramente a fortalecer
-                        nuestra infraestructura.
+                        Publica tus productos y servicios ante toda la comunidad.
                     </p>
                     <div className="join-banner__actions">
                         <a
@@ -76,21 +74,16 @@ const DataShop = () => {
                             </svg>
                             Quiero unirme
                         </a>
-                        <span className="join-note">Apoyas directamente a DataCuy</span>
                     </div>
                 </div>
                 <div className="join-banner__side">
                     <div className="join-stat">
                         <span className="join-stat__num">🌱</span>
-                        <span className="join-stat__label">Emprendedores</span>
-                    </div>
-                    <div className="join-stat">
-                        <span className="join-stat__num">$50</span>
-                        <span className="join-stat__label">MXN / mes</span>
+                        <span className="join-stat__label">Emprendedores con</span>
                     </div>
                     <div className="join-stat">
                         <span className="join-stat__num">💚</span>
-                        <span className="join-stat__label">Va a la comunidad</span>
+                        <span className="join-stat__label">A la comunidad</span>
                     </div>
                 </div>
             </section>
