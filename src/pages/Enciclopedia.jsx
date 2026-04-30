@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+
 const breeds = [
     { img: "imgs/tipos_cuys/americano.jpg", name: "Americana", tag: "Pelo corto", desc: "La raza más popular. Tiene el pelo corto, liso y suave. Son ideales para principiantes por su temperamento dócil y bajo mantenimiento." },
     { img: "imgs/tipos_cuys/teddy.webp", name: "Teddy", tag: "Pelo denso", desc: "Su pelo es corto, denso y áspero al tacto, dándole un aspecto de peluche. Son conocidos por ser sumamente pacientes y cariñosos." },
@@ -20,9 +22,19 @@ const sounds = [
     { sound: "Castañeo de dientes", emoji: "⚠️", desc: "Señal de advertencia: tu cobaya está muy enfadada o se siente amenazada. Es mejor darles espacio en este momento.", warn: true },
     { sound: "Popcorning", emoji: "🍿", desc: "Cuando saltan de forma explosiva y giran en el aire. Es la señal inequívoca de que tu cobaya es inmensamente feliz.", warn: false },
     { sound: "Rumbling", emoji: "💃", desc: "Mueven las caderas de lado a lado emitiendo un ronroneo grave. Es un comportamiento de cortejo o para mostrar dominancia.", warn: false },
+    { sound: "Chirping (Pajareo)", emoji: "🐦", desc: "Un sonido rítmico similar al de un pájaro. Es muy poco común y suele ocurrir de noche; se asocia con un estado de trance o alerta máxima.", warn: false },
+    { sound: "Siseo (Hissing)", emoji: "🐍", desc: "Un sonido de aire similar al de un gato. Indica agresividad extrema o miedo intenso. Es una señal clara de 'no te acerques'.", warn: true },
+    { sound: "Gemido / Quejido", emoji: "🥺", desc: "Un sonido agudo y molesto que hacen cuando otro cuy les quita comida o si las estás cargando y ya no quieren estar ahí.", warn: false },
+    { sound: "Arrullo (Cooing)", emoji: "❤️", desc: "Sonido suave y reconfortante que las madres usan con sus crías o entre parejas para fortalecer el vínculo y dar seguridad.", warn: false },
+    { sound: "Chillido Agudo", emoji: "🚫", desc: "Un sonido fuerte y punzante que indica dolor físico o un susto repentino muy fuerte. Requiere atención inmediata.", warn: true },
+    { sound: "Chutting (Burbujeo)", emoji: "👣", desc: "Sonidos cortos y rápidos que emiten mientras exploran su entorno. Significa que tienen curiosidad y se sienten seguros.", warn: false }
 ];
 
 const Enciclopedia = () => {
+    const [selectedBreed, setSelectedBreed] = useState(null);
+
+    const closeModal = () => setSelectedBreed(null);
+
     return (
         <main className="enc-wrapper">
             <div className="enc-header">
@@ -35,18 +47,41 @@ const Enciclopedia = () => {
 
             <div className="breeds-grid">
                 {breeds.map((b) => (
-                    <article key={b.name} className="breed-card">
+                    <article 
+                        key={b.name} 
+                        className="breed-card" 
+                        onClick={() => setSelectedBreed(b)}
+                        style={{ cursor: 'pointer' }}
+                    >
                         <div className="breed-img-wrap">
                             <img src={b.img} alt={b.name} />
                             <span className="breed-tag">{b.tag}</span>
                         </div>
                         <div className="breed-body">
                             <h3>{b.name}</h3>
-                            <p>{b.desc}</p>
+                            <p>{b.desc.substring(0, 80)}...</p>
                         </div>
                     </article>
                 ))}
             </div>
+
+            {selectedBreed && (
+                <div className="modal-overlay" onClick={closeModal}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                        <button className="modal-close" onClick={closeModal}>&times;</button>
+                        <div className="modal-body-layout">
+                            <div className="modal-image-side">
+                                <img src={selectedBreed.img} alt={selectedBreed.name} />
+                            </div>
+                            <div className="modal-info-side">
+                                <span className="modal-tag">{selectedBreed.tag}</span>
+                                <h2 className="modal-title">{selectedBreed.name}</h2>
+                                <p className="modal-description">{selectedBreed.desc}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             <section className="sounds-section">
                 <div className="sounds-header">
