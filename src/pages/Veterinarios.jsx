@@ -27,7 +27,6 @@ const Veterinarios = () => {
                 const headers = headerLine.split(',').map(h => h.trim().toLowerCase());
 
                 const vetsArray = rows.map((row, i) => {
-                    // Maneja comas dentro de comillas
                     const cols = [];
                     let current = '';
                     let inQuotes = false;
@@ -60,6 +59,7 @@ const Veterinarios = () => {
                         telefono:   get('telefono') !== 'Desconocido' ? get('telefono') : null,
                         mapa:       get('mapa')     !== 'Desconocido' ? get('mapa')     : null,
                     };
+                });
 
                 setVeterinarios(vetsArray);
             })
