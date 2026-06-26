@@ -44,8 +44,9 @@ const Veterinarios = () => {
                         return val || 'Desconocido';
                     };
 
-                    const costo = get('costo');
-                    const costoNum = parseFloat(costo);
+                    const costoRaw = get('costo');
+                    const costoLimpio = costoRaw.replace(/[^0-9.-]+/g, '');
+                    const costoNum = parseFloat(costoLimpio);
 
                     return {
                         id: i,
@@ -53,13 +54,12 @@ const Veterinarios = () => {
                         nombre:     get('nombre'),
                         municipio:  get('municipio'),
                         costo:      isNaN(costoNum) ? 0 : costoNum,
-                        costoTexto: isNaN(costoNum) ? 'Precio no disponible' : `$${costo}`,
+                        costoTexto: isNaN(costoNum) ? 'Precio no disponible' : `$${costoNum}`,
                         horario:    get('horario'),
                         urgencia:   get('urgencia'),
                         telefono:   get('telefono') !== 'Desconocido' ? get('telefono') : null,
                         mapa:       get('mapa')     !== 'Desconocido' ? get('mapa')     : null,
                     };
-                });
 
                 setVeterinarios(vetsArray);
             })
